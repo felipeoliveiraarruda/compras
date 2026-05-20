@@ -44,4 +44,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function obterLevel($id)
+    {
+        $user = User::with('permissions', 'roles')->find($id);
+        return $user->level;
+    }
+
+    public static function obterVinculos($id)
+    {
+        $user = User::with('permissions', 'roles')->find($id);   
+        $vinculos = array();
+        
+        foreach ($user->getAllPermissions()->where('guard_name', User::$vinculoNs) as $p)
+        {
+            if (in_array(explode('.', $p->name)[0], User::$permissoesVinculo))
+            {
+                array_push($vinculos, $p->name);
+            }
+            
+        }
+
+        return $vinculos;
+    }
 }
