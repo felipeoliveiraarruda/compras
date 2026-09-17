@@ -9,15 +9,21 @@
         "php": "^8.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "laravellegends/pt-br-validator": "^13.0",
+        "livewire/livewire": "^4.4",
+        "sistemas-eel/portal-ui": "^0.2",
         "sistemas-eel/sso-client": "dev-main",
+        "uspdev/laravel-replicado": "^1.1",
         "uspdev/laravel-tools": "^1.6",
-        "uspdev/replicado": "^1.28"
+        "uspdev/replicado": "^1.28",
+        "uspdev/senhaunica-socialite": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.1",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
+        "lucascudo/laravel-pt-br-localization": "^3.0",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
         "phpunit/phpunit": "^11.0.1"
