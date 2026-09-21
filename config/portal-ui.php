@@ -96,9 +96,9 @@ return [
                 [
                     [
                         'label' => 'Dashboard',
-                        'route' => 'admin',
+                        'route' => 'home',
                         'icon' => 'fa-tachometer-alt',
-                        'active' => 'admin',
+                        'active' => 'home',
                         'can'   => 'user',
                     ],                
                 ],

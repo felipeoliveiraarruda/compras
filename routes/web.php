@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use SistemasEel\SSOClient\Laravel\Http\Controllers\SSOController;
 
 Route::livewire('/', 'views::index')->name('home');
+Route::livewire('/{pca}/detalhes', 'views::detalhes')->name('detalhes');
 
 Route::livewire('/admin', 'views::admin.index')->name('admin');
 
-Route::livewire('/planejamento', 'views::planejamento.index')->name('planejamento');
+Route::livewire('/planejamento',                        'views::planejamento.index')->name('planejamento');
 Route::livewire('/planejamento/demandantes',            'views::planejamento.demandante.index')->name('demandantes');
 Route::livewire('/planejamento/demandantes/create',     'views::planejamento.demandante.create')->name('demandantes.create');
 Route::livewire('/planejamento/demandantes/{pca}/edit', 'views::planejamento.demandante.edit')->name('demandantes.edit');
