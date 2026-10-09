@@ -117,7 +117,29 @@ return [
                         'can'   => 'user',
                     ],                    
                 ],
-            ],            
+            ], 
+            
+            'passagem' => 
+            [
+                'label' => 'Passagens EEL',
+                'items' => 
+                [
+                    [
+                        'label' => 'Dashboard',
+                        'route' => 'passagem.index',
+                        'icon' => 'fa-tachometer-alt',
+                        'active' => 'passagem.index',
+                        'can'   => 'user',
+                    ],                
+                    [
+                        'label' => 'Ficha Pessoal',
+                        'route' => 'passagem.pessoal',
+                        'icon' => 'fa-solid fa-user-pen',
+                        'active' => 'passagem.pessoal',
+                        'can'   => 'user',
+                    ],                
+                ],
+            ],               
 
         ],
         'hide_missing_routes' => true,

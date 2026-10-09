@@ -12,11 +12,13 @@ class Pca extends Model
     use \Spatie\Permission\Traits\HasRoles;
     use HasFactory, Notifiable;
 
-    protected $primaryKey = 'codigoPca';
-    protected $table      = 'pca';
+    protected $table      = 'pcas';
     protected $uasgs      = array(102169, 102180);
 
-    protected $fillable = [
+    protected $fillable = 
+    [
+        'numeroArtefato',
+        'anoArtefato',
         'numeroContratacao',
         'statusContratacao',
         'situacaoExecucao',
@@ -40,17 +42,30 @@ class Pca extends Model
         'descricaoMaterial',
         'unidadeFornecimento',
         'valorUnitario',
-        'quantidade',
+        'quantidadeTotal',
         'valorTotal',
         'processoSei',
         'situacaoContratacao',
-        'codigoPessoaAlteracao'
+        'codigoPessoaAlteracao',
     ];
 
-    protected $casts = [
-        'dataEstimadaInicioContratacao'     => 'date',
-        'dataEstimadaConclusaoContratacao'  => 'date',
-        'dataConclusaoDfd'                  => 'date',
+    protected $casts = 
+    [
+        'numeroArtefato' => 'integer',
+        'anoArtefato' => 'integer',
+        'codigoUASG' => 'integer',
+        'dataEstimadaInicioContratacao' => 'date',
+        'dataEstimadaConclusaoContratacao' => 'date',
+        'prazoEstimadoContratacao' => 'integer',
+        'itemDfd' => 'integer',
+        'dataConclusaoDfd' => 'date',
+        'codigoClasse' => 'integer',
+        'codigoPdm' => 'integer',
+        'codigoMaterial' => 'integer',
+        'valorUnitario' => 'decimal:2',
+        'quantidadeTotal' => 'integer',
+        'valorTotal' => 'decimal:2',
+        'codigoPessoaAlteracao' => 'integer',
     ];
 
     public function getUasgs()
@@ -60,6 +75,6 @@ class Pca extends Model
 
     public function demandantes(): HasMany
     {
-        return $this->hasMany(Demandante::class, 'codigoPca', 'codigoPca');
+        return $this->hasMany(Demandante::class, 'codigoPca');
     }
 }

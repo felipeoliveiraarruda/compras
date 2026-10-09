@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id('codigoDemandante');
             $table->unsignedBigInteger('codigoPca');
             $table->unsignedBigInteger('codigoPessoa');          
-            $table->unsignedBigInteger('codigoPessoaCriacao');
-            $table->unsignedBigInteger('codigoPessoaAlteracao');
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedBigInteger('codigoPessoaCriacao');
+            $table->unsignedBigInteger('codigoPessoaAlteracao');            
         });
     }
 

@@ -11,6 +11,8 @@ new class extends Component
 {
     use WithPagination;
 
+    protected string $paginationTheme = 'bootstrap';
+
     #[Url(except: '')]
     public string $search = '';
 
@@ -32,7 +34,7 @@ new class extends Component
             ->select(
                 'codigoUASG',
                 'numeroContratacao',
-                DB::raw('MIN(codigoPca) as codigoPca'),
+                DB::raw('MIN(id) as codigoPca'),
                 DB::raw('MAX(tituloContratacao) as tituloContratacao'),
                 DB::raw('MAX(situacaoContratacao) as situacaoContratacao'),
                 DB::raw('MAX(processoSei) as processoSei'),
@@ -57,6 +59,7 @@ new class extends Component
                 });
             })
             ->groupBy('codigoUASG', 'numeroContratacao')
+            ->orderBy('anoArtefato', 'DESC')
             ->paginate(15);
 
         return view('index', [
@@ -97,7 +100,14 @@ new class extends Component
             @endif
         </x-portal::alert>    
     @else
+
+
+
+
+
         <x-portal::card padding="false">
+
+
             {{-- BARRA SUPERIOR: Paginação customizada exibida sempre --}}
             <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div class="text-sm text-gray-600 dark:text-gray-400">
@@ -204,7 +214,7 @@ new class extends Component
                         </tr>
                     @endforeach
                 </x-slot:body>
-            </x-portal::table>
+            </x-portal::table>       
         </x-portal::card>    
     @endif
 </div>

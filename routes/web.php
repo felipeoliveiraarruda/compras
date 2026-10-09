@@ -11,6 +11,9 @@ Route::livewire('/planejamento/demandantes',            'views::planejamento.dem
 Route::livewire('/planejamento/demandantes/create',     'views::planejamento.demandante.create')->name('demandantes.create');
 Route::livewire('/planejamento/demandantes/{pca}/edit', 'views::planejamento.demandante.edit')->name('demandantes.edit');
 
+Route::livewire('/passagem',            'views::passagem.index')->name('passagem.index');
+Route::livewire('/passagem/pessoal',    'views::passagem.pessoal.index')->name('passagem.pessoal');
+
 /* Sobreescrever rotas de login senhaunica */
 Route::get('/login',  [SSOController::class, 'login'])->name('login');
 Route::get('/logout', [SSOController::class, 'logout'])->name('logout');
