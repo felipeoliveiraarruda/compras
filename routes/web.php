@@ -14,6 +14,12 @@ Route::livewire('/planejamento/demandantes/{pca}/edit', 'views::planejamento.dem
 Route::livewire('/passagem',            'views::passagem.index')->name('passagem.index');
 Route::livewire('/passagem/pessoal',    'views::passagem.pessoal.index')->name('passagem.pessoal');
 
+Route::livewire('/slvmat/processos',    'views::slvmat.processos.index')->name('svlmat.processos');
+
+Route::livewire('/dvadm',               'views::dvadm.index')->name('dvadm.index');
+
+
+
 /* Sobreescrever rotas de login senhaunica */
 Route::get('/login',  [SSOController::class, 'login'])->name('login');
 Route::get('/logout', [SSOController::class, 'logout'])->name('logout');

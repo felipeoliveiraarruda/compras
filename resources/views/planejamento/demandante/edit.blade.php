@@ -32,7 +32,7 @@ new class extends Component
         }
 
         // Carrega demandantes já cadastrados
-        $demandantesAtuais = Demandante::where('codigoPca', $this->pca->codigoPca)->get();
+        $demandantesAtuais = Demandante::where('codigoPca', $this->pca->id)->get();
 
         foreach ($demandantesAtuais as $dem) {
             try {
@@ -86,7 +86,7 @@ new class extends Component
             $codpesAtuais = collect($this->demandantesAdicionados)->pluck('codpes')->toArray();
 
             // 1. Remove demandantes desvinculados
-            Demandante::where('codigoPca', $this->pca->codigoPca)
+            Demandante::where('id', $this->pca->id)
                 ->whereNotIn('codigoPessoa', $codpesAtuais)
                 ->delete();
 
@@ -94,7 +94,7 @@ new class extends Component
             foreach ($this->demandantesAdicionados as $pessoa) {
                 Demandante::firstOrCreate(
                     [
-                        'codigoPca' => $this->pca->codigoPca,
+                        'codigoPca' => $this->pca->id,
                         'codigoPessoa' => $pessoa['codpes'],
                     ],
                     [

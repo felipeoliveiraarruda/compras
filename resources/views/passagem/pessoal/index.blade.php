@@ -24,12 +24,16 @@ new class extends Component
     
     public function mount()
     {
+        $this->codpes   = auth()->user()->codpes;
+        $this->name     = auth()->user()->name;
+        $this->email    = auth()->user()->email;
+
         $pessoa = Pessoal::where('codigoUsuario', auth()->id())->first();        
 
         if ($pessoa) 
         {
             $this->primeiroNomePessoa = $pessoa->primeiroNomePessoa;
-            $this->sobrenomeNomePessoa = $pessoa->sobrenomeNomePessoa;
+            $this->sobreNomePessoa = $pessoa->sobreNomePessoa;
             $this->cpfPessoa = $pessoa->cpfPessoa;
             $this->rgPessoa = $pessoa->rgPessoa;
             $this->dataNascimentoPessoa = $pessoa->dataNascimentoPessoa?->format('Y-m-d');
@@ -43,9 +47,6 @@ new class extends Component
             // Pré-preenche com dados básicos do User do Laravel
             $nome = explode(' ', auth()->user()->name);
 
-            $this->codpes               = auth()->user()->codpes;
-            $this->name                 = auth()->user()->name;
-            $this->email                = auth()->user()->email;
             $this->primeiroNomePessoa   = $nome[0];
             $this->sobreNomePessoa      = end($nome);
             $this->dataNascimentoPessoa = DateTime::createFromFormat('d/m/Y', trim(Pessoa::nascimento(auth()->user()->codpes)))->format('Y-m-d');

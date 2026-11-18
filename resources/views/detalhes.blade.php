@@ -46,7 +46,7 @@ new class extends Component
     public function render()
     {
         // Agrupa os DFDs únicos pertencentes a esta contratação
-        $dfds = Pca::select('numeroDfd', 'areaRequisitante', 'classificacaoContratacao', 'codigoPca')
+        $dfds = Pca::select('numeroDfd', 'areaRequisitante', 'classificacaoContratacao', 'id')
             ->where('codigoUASG', $this->pca->codigoUASG)
             ->where('numeroContratacao', $this->pca->numeroContratacao)
             ->groupBy('codigoUASG', 'numeroContratacao', 'numeroDfd')
@@ -63,7 +63,7 @@ new class extends Component
 <div class="space-y-6">
     {{-- BARRA SUPERIOR: BOTÃO VOLTAR E INDICADORES --}}
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <x-portal::button href="{{ url('/') }}" variant="secondary" icon="fa-arrow-left" size="sm">
+        <x-portal::button href="{{ url()->previous() }}" variant="secondary" icon="fa-arrow-left" size="sm">
             Voltar
         </x-portal::button>
 
@@ -155,7 +155,7 @@ new class extends Component
                 $itens = \App\Models\Pca::where('codigoUASG', $pca->codigoUASG)
                     ->where('numeroContratacao', $pca->numeroContratacao)
                     ->where('numeroDfd', $dfd->numeroDfd)
-                    ->orderBy('codigoPca')
+                    ->orderBy('id')
                     ->get();
             @endphp
 

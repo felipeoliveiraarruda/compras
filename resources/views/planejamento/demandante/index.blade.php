@@ -52,22 +52,22 @@ new class extends Component
         $pcas = Pca::query()
             ->has('demandantes')
             ->with('demandantes')
-            ->select('pca.*')
-            ->selectRaw("GROUP_CONCAT(DISTINCT pca.areaRequisitante SEPARATOR '|||') as areas_requisitantes")
+            ->select('pcas.*')
+            ->selectRaw("GROUP_CONCAT(DISTINCT pcas.areaRequisitante SEPARATOR '|||') as areas_requisitantes")
             ->when($this->search, function ($query) {
                 $term = '%' . trim($this->search) . '%';
                 $query->where(function ($q) use ($term) {
-                    $q->where('pca.numeroArtefato', 'like', $term)
-                      ->orWhere('pca.anoArtefato', 'like', $term)
-                      ->orWhere('pca.numeroContratacao', 'like', $term)
-                      ->orWhere('pca.tituloContratacao', 'like', $term)
-                      ->orWhere('pca.areaRequisitante', 'like', $term)
+                    $q->where('pcas.numeroArtefato', 'like', $term)
+                      ->orWhere('pcas.anoArtefato', 'like', $term)
+                      ->orWhere('pcas.numeroContratacao', 'like', $term)
+                      ->orWhere('pcas.tituloContratacao', 'like', $term)
+                      ->orWhere('pcas.areaRequisitante', 'like', $term)
                       ->orWhereHas('demandantes', function ($dq) use ($term) {
                           $dq->where('codigoPessoa', 'like', $term);
                       });
                 });
             })
-            ->groupBy('pca.codigoUASG', 'pca.numeroContratacao')
+            ->groupBy('pcas.codigoUASG', 'pcas.numeroContratacao')
             ->paginate(15);
 
         // Busca o nome dos demandantes no Replicado
@@ -217,7 +217,7 @@ new class extends Component
                             {{-- Ações --}}
                             <td class="px-4 py-3 text-right whitespace-nowrap space-x-1">
                                 <x-portal::button
-                                    :href="route('demandantes.edit', $pca->codigoPca)"
+                                    :href="route('demandantes.edit', $pca->id)"
                                     variant="secondary"
                                     size="xs"
                                     icon="fa-pen-to-square"
@@ -230,7 +230,7 @@ new class extends Component
                                     variant="danger"
                                     size="xs"
                                     icon="fa-trash"
-                                    wire:click="confirmDelete({{ $pca->codigoPca }})"
+                                    wire:click="confirmDelete({{ $pca->id }})"
                                 >
                                     Excluir
                                 </x-portal::button>

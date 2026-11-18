@@ -12,7 +12,7 @@ new class extends Component
     use WithFileUploads;
 
     public $csv_file;
-    public $table_name = 'pca';
+    public $table_name = 'pcas';
     public $coluna     = '';
 
     protected function rules(): array
@@ -113,7 +113,7 @@ new class extends Component
             session()->flash('success', "Tabela '{$tableName}': dados importados com sucesso!");
 
             // Limpa os campos do formulário
-            $this->reset(['csv_file', 'table_name']);
+            $this->reset(['csv_file']);
 
         } 
         catch (\Exception $e) 
@@ -141,6 +141,8 @@ new class extends Component
 
 <div class="space-y-6">
     <x-portal::page-header title="Importação" subtitle="Importar dados do PCA por CSV" />
+
+    <x-portal::flash-messages />
     
     <form wire:submit.prevent="import">        
         <x-portal::input

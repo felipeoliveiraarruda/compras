@@ -82,7 +82,7 @@ new class extends Component
             foreach ($this->demandantesAdicionados as $pessoa) {
                 Demandante::firstOrCreate(
                     [
-                        'codigoPca' => $this->selectedPca->codigoPca,
+                        'codigoPca' => $this->selectedPca->id,
                         'codigoPessoa' => $pessoa['codpes'],
                     ],
                     [
@@ -105,16 +105,16 @@ new class extends Component
         if (strlen(trim($this->searchPca)) >= 2) {
             $term = '%' . trim($this->searchPca) . '%';
             $pcasEncontradas = Pca::query()
-                ->select('pca.*')
-                ->selectRaw("GROUP_CONCAT(DISTINCT pca.areaRequisitante SEPARATOR '|||') as areas_requisitantes")
+                ->select('pcas.*')
+                ->selectRaw("GROUP_CONCAT(DISTINCT pcas.areaRequisitante SEPARATOR '|||') as areas_requisitantes")
                 ->where(function ($q) use ($term) {
-                    $q->where('pca.numeroArtefato', 'like', $term)
-                      ->orWhere('pca.anoArtefato', 'like', $term)
-                      ->orWhere('pca.numeroContratacao', 'like', $term)
-                      ->orWhere('pca.tituloContratacao', 'like', $term)
-                      ->orWhere('pca.areaRequisitante', 'like', $term);
+                    $q->where('pcas.numeroArtefato', 'like', $term)
+                      ->orWhere('pcas.anoArtefato', 'like', $term)
+                      ->orWhere('pcas.numeroContratacao', 'like', $term)
+                      ->orWhere('pcas.tituloContratacao', 'like', $term)
+                      ->orWhere('pcas.areaRequisitante', 'like', $term);
                 })
-                ->groupBy('pca.codigoUASG', 'pca.numeroContratacao')
+                ->groupBy('pcas.codigoUASG', 'pcas.numeroContratacao')
                 ->limit(10)
                 ->get();
         }
@@ -199,7 +199,7 @@ new class extends Component
                                     $areas = array_filter(array_map('trim', explode('|||', $pca->areas_requisitantes ?? $pca->areaRequisitante ?? '')));
                                 @endphp
                                 <div 
-                                    wire:click="selectPca({{ $pca->codigoPca }})"
+                                    wire:click="selectPca({{ $pca->id }})"
                                     class="p-3 hover:bg-gray-100 dark:hover:bg-gray-700/50 cursor-pointer border-b last:border-b-0 border-gray-100 dark:border-gray-700"
                                 >
                                     <div class="font-semibold text-sm text-gray-800 dark:text-gray-200">

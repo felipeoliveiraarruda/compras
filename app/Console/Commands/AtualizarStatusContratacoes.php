@@ -36,8 +36,8 @@ class AtualizarStatusContratacoes extends Command
                 foreach ($pca->demandantes as $demandante) {
                     try {
                         // Busca o e-mail do demandante via Replicado USP
-                        $email = Pessoa::email($demandante->codigoPessoa);
-                        //$email = 'dev.ci.eel@usp.br';
+                        //$email = Pessoa::email($demandante->codigoPessoa);
+                        $email = 'dev.ci.eel@usp.br';
 
                         if ($email) 
                         {

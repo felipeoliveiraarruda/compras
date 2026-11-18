@@ -19,7 +19,7 @@ class Pessoal extends Model
     protected $fillable = [
         'codigoUsuario',
         'primeiroNomePessoa',
-        'numero_usp',
+        'sobreNomePessoa',
         'cpfPessoa',
         'rgPessoa',
         'dataNascimentoPessoa',

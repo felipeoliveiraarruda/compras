@@ -100,7 +100,14 @@ return [
                         'icon' => 'fa-tachometer-alt',
                         'active' => 'home',
                         'can'   => 'user',
-                    ],                
+                    ],   
+                    /*[
+                        'label' => 'Importar PCA',
+                        'route' => 'admin.importar',
+                        'icon' => 'fa-solid fa-file-import',
+                        'active' => 'admin.importar',
+                        'can'   => 'user',
+                    ],   */            
                 ],
             ],               
 
@@ -126,9 +133,9 @@ return [
                 [
                     [
                         'label' => 'Dashboard',
-                        'route' => 'passagem.index',
+                        'route' => 'home',
                         'icon' => 'fa-tachometer-alt',
-                        'active' => 'passagem.index',
+                        'active' => 'home',
                         'can'   => 'user',
                     ],                
                     [
@@ -139,7 +146,51 @@ return [
                         'can'   => 'user',
                     ],                
                 ],
+            ],
+            
+            'DVADM' =>
+            [
+                'label' => 'DVADM',
+                'items' => 
+                [
+                    [
+                        'label' => 'Dashboard',
+                        'route' => 'home',
+                        'icon' => 'fa-tachometer-alt',
+                        'active' => 'home',
+                        'can'   => 'user',
+                    ],                
+                    [
+                        'label' => 'Distribuir SVLMAT',
+                        'route' => 'dvadm.index',
+                        'icon' => 'fa-solid fa-plus',
+                        'active' => 'dvadm.index',
+                        'can'   => 'user',
+                    ],                
+                ],
             ],               
+            
+            'SVLMAT' => 
+            [
+                'label' => 'SVLMAT',
+                'items' => 
+                [
+                    [
+                        'label' => 'Dashboard',
+                        'route' => 'home',
+                        'icon' => 'fa-tachometer-alt',
+                        'active' => 'home',
+                        'can'   => 'user',
+                    ],                
+                    [
+                        'label' => 'Distribuir Processos',
+                        'route' => 'svlmat.processos',
+                        'icon' => 'fa-solid fa-plus',
+                        'active' => 'svlmat.processos',
+                        'can'   => 'user',
+                    ],                
+                ],
+            ],             
 
         ],
         'hide_missing_routes' => true,
