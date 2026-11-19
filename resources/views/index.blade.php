@@ -100,11 +100,6 @@ new class extends Component
             @endif
         </x-portal::alert>    
     @else
-
-
-
-
-
         <x-portal::card padding="false">
 
 
